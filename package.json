@@ -1,7 +1,7 @@
 {
   "name": "babel-plugin-collect-jsx-attribute",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "1.0.1",
+  "main": "src/index.js",
   "license": "MIT",
   "repository": "https://github.com/zjb19970804/babel-plugin-collect-jsx-attribute",
   "scripts": {

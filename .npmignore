@@ -1,0 +1,5 @@
+node_modules
+
+test/__snapshots__
+
+yarn-error.log

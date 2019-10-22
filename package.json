@@ -1,0 +1,14 @@
+{
+  "name": "babel-plugin-collect-jsx-attribute",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest -u"
+  },
+  "dependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-react": "^7.6.3",
+    "jest": "^24.9.0"
+  }
+}

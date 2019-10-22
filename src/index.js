@@ -32,41 +32,33 @@ module.exports = function({ types: t }) {
         let value;
         // 字符串
         if (t.isStringLiteral(valueObj)) {
+          // string
           value = valueObj.value;
-        } else if (
-          // 数字
-          t.isJSXExpressionContainer(valueObj) &&
-          t.isNumericLiteral(valueObj.expression)
-        ) {
-          value = valueObj.expression.value;
-        } else if (
-          // 对象
-          t.isJSXExpressionContainer(valueObj) &&
-          t.isObjectExpression(valueObj.expression)
-        ) {
-          // 对象属性
-          const properties = valueObj.expression.properties;
-          value = {};
-          properties.forEach(item => {
-            value[item.key.name] = item.value.value;
-          });
-        } else if (
-          t.isJSXExpressionContainer(valueObj) &&
-          t.isArrayExpression(valueObj.expression)
-        ) {
-          const elements = valueObj.expression.elements;
-          value = elements.map(item => item.value);
+        } else if (t.isJSXExpressionContainer(valueObj)) {
+          if (t.isNumericLiteral(valueObj.expression)) {
+            // number
+            value = valueObj.expression.value;
+          } else if (t.isObjectExpression(valueObj.expression)) {
+            // object
+            const properties = valueObj.expression.properties;
+            value = {};
+            properties.forEach(item => {
+              value[item.key.name] = item.value.value;
+            });
+          } else if (t.isArrayExpression(valueObj.expression)) {
+            // array
+            const elements = valueObj.expression.elements;
+            value = elements.map(item => item.value);
+          }
         }
 
         // 插入收集的集合
         if (opts.attributes.findIndex(item => item === key) !== -1) {
           if (this.cache[key]) {
             if (Array.isArray(value)) {
-              value.forEach(v => {
-                if (this.cache[key].findIndex(k => k === v) === -1) {
-                  this.cache[key].push(v);
-                }
-              });
+              this.cache[key] = Array.from(
+                new Set(this.cache[key].concat(value))
+              );
             } else {
               if (this.cache[key].findIndex(item => item === value) === -1) {
                 this.cache[key].push(value);

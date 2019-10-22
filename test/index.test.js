@@ -17,7 +17,7 @@ it("works", () => {
       [
         plugin,
         {
-          attributes: ["data-authority", "data-test"],
+          attributes: ["className"],
           filename: "collect-jsx-attribute.json"
         }
       ]
@@ -25,3 +25,4 @@ it("works", () => {
   });
   expect(code).toMatchSnapshot();
 });
+

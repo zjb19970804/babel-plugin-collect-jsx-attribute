@@ -3,8 +3,10 @@ const plugin = require("../src/index");
 
 var example = `
   <>
-    <div data-authority={2} data-test={6} style={{margin: 10, paddig: 10}} hide>test</div>
-    <button data-authority={2}>test</button>
+    <b data-authority={[2,3]}>sada</b>
+    <div data-authority={2} data-test={6} style={{margin: 10}} hide>test</div>
+    <button data-authority={2} className="testClass">test</button>
+    <a href="http://wwwww.asfafafaf,affa/.com">连接</a>
   </>
 `;
 
